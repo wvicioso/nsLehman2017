@@ -1,0 +1,3 @@
+rootProject.name = 'lehman2017'
+
+include ':app'
