@@ -44,36 +44,36 @@ export default class App extends Component<{}> {
       })
     }
   }
+
   render() {
     return (
-  <Image style={{ backgroundColor: 'red', flex: 1, width: 100, height: 100}} source={{uri: 'http://iconshow.me/media/images/Mixed/Free-Flat-UI-Icons/png/512/eye-24-512.png'}} />
-)}
-  // render() {
-  //   return (
-  //     <View style={styles.container}>
-  //       <View style={styles.header}>
-  //         {/* <Text style={styles.headerText}>A-eye</Text> */}
-  //       </View>
-  //       <View style={[styles.button, {backgroundColor: 'white'}]}>
-  //         <Text style={[styles.text, {fontSize: 40, color: 'black'}]}>{this.state.data}</Text>
-  //       </View>
-  //       <WS
-  //         ref={ref => {this.ws = ref}}
-  //         url="ws://148.84.204.98:8080"
-  //         onOpen={() => {
-  //           console.log('Open!')
-  //           // this.ws.send('====== ARE YOU THIS? =====')
-  //         }}
-  //         onMessage={(resp) => {
-  //           this.convertToSpeech(resp);
-  //         }}
-  //         onError={console.log}
-  //         onClose={console.log}
-  //         reconnect // Will try to reconnect onClose
-  //       />
-  //     </View>
-  //   );
-  // }
+      <View style={styles.container}>
+        <Image style={{position: 'absolute', top: 0, bottom: 0, right: 0, left: 0}}  source={{uri: 'https://i.pinimg.com/736x/bc/b2/eb/bcb2ebe4b6a5712bf0ad445d3688cc3f--background-pictures-wallpaper-for.jpg'}}/>
+        <View style={{position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, backgroundColor: 'black', opacity: .0}} />
+        <View style={styles.header}>
+          <Image style={{width: 200, height: 150, top: 60}}source={require('./img/eye.png')}/>
+          <Text style={{position: 'absolute', fontSize: 50, color: 'white', top: 80, backgroundColor: 'transparent'}}>A</Text>
+        </View>
+        <View style={[styles.button, {backgroundColor: 'rgba(255,255,255,.7)'}]}>
+          <Text style={[styles.text, {fontSize: 40, color: 'black'}]}>{this.state.data}</Text>
+        </View>
+        <WS
+          ref={ref => {this.ws = ref}}
+          url="ws://148.84.204.98:8080"
+          onOpen={() => {
+            console.log('Open!')
+            // this.ws.send('====== ARE YOU THIS? =====')
+          }}
+          onMessage={(resp) => {
+            this.convertToSpeech(resp);
+          }}
+          onError={console.log}
+          onClose={console.log}
+          reconnect // Will try to reconnect onClose
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
