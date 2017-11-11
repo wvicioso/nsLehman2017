@@ -1,37 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
+  TouchableOpacity,
+  View,
   Text,
-  View
+  DeviceEventEmitter
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Speech from 'react-native-speech';
+
 
 export default class App extends Component<{}> {
+  // clientAddr;
+  // messagecount = 1;
+  // port = 8080;
+
+  constructor() {
+    super();
+
+    this.state = {
+      dataFromAlienComp: 'nothing recieved'
+    }
+  }
+
+  convertToSpeech(data){
+    Speech.speak({
+      text: 'Car',
+      voice: 'en-US'
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <TouchableOpacity style={styles.button}>
+          <Text>{this.state.dataFromAlienComp}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -43,6 +49,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  button: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 15,
+    borderColor: 'red'
   },
   welcome: {
     fontSize: 20,
