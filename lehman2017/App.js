@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Speech from 'react-native-speech';
+import WS from 'react-native-websocket';
 
 
 export default class App extends Component<{}> {
@@ -19,7 +20,6 @@ export default class App extends Component<{}> {
 
   constructor() {
     super();
-
     this.state = {
       dataFromAlienComp: 'nothing recieved'
     }
@@ -32,12 +32,26 @@ export default class App extends Component<{}> {
     });
   }
 
+
+
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.button}>
           <Text>{this.state.dataFromAlienComp}</Text>
         </TouchableOpacity>
+        <WS
+          ref={ref => {this.ws = ref}}
+          url="wss://148.84.205.240:5005"
+          onOpen={() => {
+            console.log('Open!')
+            this.ws.send('Hello')
+          }}
+          onMessage={console.log}
+          onError={console.log}
+          onClose={console.log}
+          reconnect // Will try to reconnect onClose
+        />
       </View>
     );
   }
